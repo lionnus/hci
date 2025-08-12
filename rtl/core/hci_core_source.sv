@@ -221,9 +221,9 @@ module hci_core_source
 
   assign tcdm.r_ready = stream.ready;
   assign tcdm.req     = (cs != STREAMER_IDLE) ? addr_pop.valid & stream.ready : '0;
-  assign tcdm.add     = (cs != STREAMER_IDLE) ? {addr_pop.data[31:2],2'b0}    : '0;
+  assign tcdm.add     = (cs != STREAMER_IDLE) ? {addr_pop.data[31:ELEMENT_INDEX_WIDTH],{ELEMENT_INDEX_WIDTH{1'b0}}}    : '0;
   assign tcdm.wen     = 1'b1;
-  assign tcdm.be      = 4'h0;
+  assign tcdm.be      = {ELEMENTS_PER_BANK{1'b0}};
   assign tcdm.data    = '0;
   assign tcdm.user    = '0;
   assign tcdm.id      = '0;
