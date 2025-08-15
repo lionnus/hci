@@ -318,7 +318,7 @@ module hci_core_source
       end
       STREAMER_DONE : begin
         address_gen_en = 1'b1;
-        if((addr_fifo_flags.empty==1'b1) && (stream_cnt_q==ctrl_i.addressgen_ctrl.tot_len)) begin
+        if((addr_fifo_flags.empty==1'b1) && (stream_cnt_d==ctrl_i.addressgen_ctrl.tot_len)) begin
           ns = STREAMER_IDLE;
           flags_o.done = 1'b1;
           done = 1'b1;
